@@ -6,15 +6,14 @@ from sklearn.ensemble import RandomForestClassifier
 
 st.title("Zoo Animal Classifier")
 
-# 1. Load Data
+#Load Data
 @st.cache_data
 def load_data():
-    # Ensure zoo.csv is in the same folder as app.py
     return pd.read_csv("zoo.csv")
 
 df = load_data()
 
-# 2. Data Cleaning
+#Data Cleaning
 def clean_values(val):
     if isinstance(val, str) and val.startswith("b'"):
         val = val[2:-1]
@@ -24,7 +23,7 @@ def clean_values(val):
 
 df_cleaned = df.map(clean_values)
 
-# 3. Model Training
+#Model Training
 X = df_cleaned.drop(['animal', 'type'], axis=1)
 y = df_cleaned['type']
 
@@ -32,7 +31,6 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_
 model = RandomForestClassifier(n_estimators=100, random_state=42)
 model.fit(X_train, y_train)
 
-# 4. Streamlit UI
 st.subheader("Model Performance")
 y_pred = model.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
