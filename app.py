@@ -50,7 +50,7 @@ if st.button("Predict Random Animal"):
     st.write(f"**Predicted Type:** {predicted_type}")
     st.balloons()
     if actual_type==predicted_type:
-        
+        st.balloons()
         st.toast("Prediction Success 🎉")
     else:
         st.snow()
