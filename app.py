@@ -34,19 +34,15 @@ model.fit(X_train, y_train)
 st.subheader("Model Performance")
 y_pred = model.predict(X_test)
 
-# Calculate metrics
+# Calculate 
 accuracy = accuracy_score(y_test, y_pred)
 precision = precision_score(y_test, y_pred, average='weighted', zero_division=0)
 recall = recall_score(y_test, y_pred, average='weighted', zero_division=0)
 
-# Display metrics
 st.write(f"Model Accuracy: **{accuracy:.2f}**")
 st.write(f"Precision: **{precision:.2f}**")
 st.write(f"Recall: **{recall:.2f}**")
 
-#y_pred = model.predict(X_test)
-#accuracy = accuracy_score(y_test, y_pred)
-#st.write(f"Model Accuracy: **{accuracy:.2f}**")
 
 st.subheader("Test a Random Animal")
 if st.button("Predict Random Animal"):
