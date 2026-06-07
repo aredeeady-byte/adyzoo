@@ -40,10 +40,10 @@ precision = precision_score(y_test, y_pred, average='weighted', zero_division=0)
 recall = recall_score(y_test, y_pred, average='weighted', zero_division=0)
 
 # Display metrics
-col1, col2, col3 = st.columns(3)
-col1.metric("Accuracy", f"{accuracy:.2f}")
-col2.metric("Precision", f"{precision:.2f}")
-col3.metric("Recall", f"{recall:.2f}")
+st.write(f"Model Accuracy: **{accuracy:.2f}**")
+st.write(f"Precision: **{{precision:.2f}**")
+st.write(f"Recall: **{{recall:.2f}**")
+
 #y_pred = model.predict(X_test)
 #accuracy = accuracy_score(y_test, y_pred)
 #st.write(f"Model Accuracy: **{accuracy:.2f}**")
