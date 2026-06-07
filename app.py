@@ -1,8 +1,8 @@
 import streamlit as st
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, precision_score, recall_score
 
 st.title("Zoo Animal Classifier")
 
@@ -33,8 +33,20 @@ model.fit(X_train, y_train)
 
 st.subheader("Model Performance")
 y_pred = model.predict(X_test)
+
+# Calculate metrics
 accuracy = accuracy_score(y_test, y_pred)
-st.write(f"Model Accuracy: **{accuracy:.2f}**")
+precision = precision_score(y_test, y_pred, average='weighted', zero_division=0)
+recall = recall_score(y_test, y_pred, average='weighted', zero_division=0)
+
+# Display metrics
+col1, col2, col3 = st.columns(3)
+col1.metric("Accuracy", f"{accuracy:.2f}")
+col2.metric("Precision", f"{precision:.2f}")
+col3.metric("Recall", f"{recall:.2f}")
+#y_pred = model.predict(X_test)
+#accuracy = accuracy_score(y_test, y_pred)
+#st.write(f"Model Accuracy: **{accuracy:.2f}**")
 
 st.subheader("Test a Random Animal")
 if st.button("Predict Random Animal"):
