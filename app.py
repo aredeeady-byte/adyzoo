@@ -62,3 +62,30 @@ if st.button("Predict Random Animal"):
     else:
         st.snow()
         st.toast("Prediction Fail ")
+
+#addon
+st.subheader("Predict Your Own Animal")
+
+# We create inputs based on the columns of your X dataset (excluding 'animal')
+# Note: Ensure these features match exactly what your model was trained on
+features = ['hair', 'feathers', 'eggs', 'milk', 'airborne', 'aquatic', 'predator', 
+            'toothed', 'backbone', 'breathes', 'venomous', 'fins', 'legs', 'tail', 
+            'domestic', 'catsize']
+
+user_input = {}
+cols = st.columns(4) # Create a 4-column grid for the checkboxes
+
+for i, feature in enumerate(features):
+    # 'legs' is usually a number, others are 0/1 (boolean)
+    if feature == 'legs':
+        user_input[feature] = cols[i % 4].number_input("Legs (0-8)", min_value=0, max_value=8, value=2)
+    else:
+        user_input[feature] = cols[i % 4].checkbox(feature)
+
+# Convert user input to a DataFrame for the model
+input_df = pd.DataFrame([user_input])
+
+# Prediction button
+if st.button("Predict Animal Type"):
+    prediction = model.predict(input_df)[0]
+    st.success(f"The predicted type for your animal is: **Type {prediction}**")
