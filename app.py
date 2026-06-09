@@ -27,7 +27,7 @@ df_cleaned = df.map(clean_values)
 X = df_cleaned.drop(['animal', 'type'], axis=1)
 y = df_cleaned['type']
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.7, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.6, random_state=42)
 model = RandomForestClassifier(n_estimators=75, random_state=42)
 model.fit(X_train, y_train)
 
