@@ -3,6 +3,9 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.metrics import confusion_matrix
 
 st.title("Zoo Animal Classifier")
 
@@ -43,6 +46,15 @@ st.write(f"Model Accuracy: **{accuracy:.3f}**")
 st.write(f"Precision: **{precision:.3f}**")
 st.write(f"Recall: **{recall:.3f}**")
 
+# ... after you get y_pred ...
+st.subheader("Model Error Analysis: Confusion Matrix")
+cm = confusion_matrix(y_test, y_pred)
+
+fig, ax = plt.subplots(figsize=(8, 6))
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', ax=ax)
+ax.set_xlabel('Predicted')
+ax.set_ylabel('Actual')
+st.pyplot(fig)
 
 st.subheader("Test a Random Animal")
 if st.button("Predict Random Animal"):
