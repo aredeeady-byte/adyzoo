@@ -39,9 +39,9 @@ accuracy = accuracy_score(y_test, y_pred)
 precision = precision_score(y_test, y_pred, average='weighted', zero_division=0)
 recall = recall_score(y_test, y_pred, average='weighted', zero_division=0)
 
-st.write(f"Model Accuracy: **{accuracy:.2f}**")
-st.write(f"Precision: **{precision:.2f}**")
-st.write(f"Recall: **{recall:.2f}**")
+st.write(f"Model Accuracy: **{accuracy:.3f}**")
+st.write(f"Precision: **{precision:.3f}**")
+st.write(f"Recall: **{recall:.3f}**")
 
 
 st.subheader("Test a Random Animal")
